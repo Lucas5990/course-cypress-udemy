@@ -10,7 +10,7 @@ it('Should check Equality', () => {
   expect(a, 'Mensagem em caso de falha').equal(1);
   expect(a).to.be.equal(1);
   expect(a).not.to.be.equal('b');
-})
+  })
 
 it('Truthy', () => {
   const a = true;
