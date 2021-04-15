@@ -1,3 +1,9 @@
+/// <reference types="cypress"/>
+
+/*
+  Esta aula ensina o básico sobre selecionar elementos e fazer assertivas em textos.
+*/
+
 describe('Work with basic elements', () => {
   it('Text', () => {
     cy.visit('https://wcaquino.me/cypress/componentes.html')
