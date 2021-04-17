@@ -12,7 +12,4 @@ describe('Cypress Basics', () => {
       .should('be.equal','Campo de Treinamento')
       .and('contain','Campo')
   })
-
-  // TODO: Imprimir o title no console
-  // TODO: Escrever o title em outro campo
 })
