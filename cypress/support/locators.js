@@ -7,11 +7,31 @@ const locators = {
   MENU: {
     SETTINGS: '[data-test=menu-settings]',
     CONTAS: '[href="/contas"]',
+    RESETAR: '[href="/reset"]',
+    HOME: '[data-test=menu-home]',
+    MOVIMENTACAO: '[data-test=menu-movimentacao]',
+    EXTRATO: '[data-test=menu-extrato]'
   },
   CONTAS: {
     NOME: '[data-test=nome]',
     BTN_SALVAR: '.btn',
-    XP_BTN_ALTERAR: '//table//td[contains(.,"Conta de teste")]/..//i[@class="far fa-edit"]'
+    FN_XP_BTN_ALTERAR: name => `//table//td[contains(.,"${name}")]/..//i[@class="far fa-edit"]`
+  },
+  MOVIMENTACAO: {
+    DESCRICAO: '[data-test=descricao]',
+    VALOR: '[data-test=valor]',
+    INTERESSADO: '[data-test=envolvido]',
+    STATUS: '[data-test=status]',
+    CONTA: '[data-test=conta]',
+    BTN_SALVAR: '.btn-primary',
+  },
+  EXTRATO: {
+    NUM_LINHAS: '.list-group > li',
+    XP_BUSCA_ELEMENTO: '//span[contains(., "Desc")]/following-sibling::small[contains(.,"123")]',
+    FN_XP_REMOVER_ELEMENTO: name => `//small[contains(.,'${name}')]/../../..//i[@class='far fa-trash-alt']`
+  },
+  SALDO: {
+    FN_XP_SALDO_CONTA: NOME => `//td[contains(.,'${NOME}')]/../td[2]`
   },
   MESSAGE: '.toast-message'
 }
