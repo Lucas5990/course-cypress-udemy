@@ -6,7 +6,7 @@
 
 ---
 
-## Course Completness
+## 🐾 Course Completness
 
 - [X] Session 1: Apresentação
 - [X] Session 2: Cypress Básico
@@ -16,7 +16,7 @@
 - [X] Session 6: Pontos de atenção
 - [X] Session 7: Localizando elementos
 - [X] Session 8: Outras funcionalidades do Cypress
-- [ ] Session 9: Testes funcionais de uma aplicação real
+- [X] Session 9: Testes funcionais de uma aplicação real
 - [ ] Session 10: Testes da API de uma aplicação real
 - [ ] Session 11: Testes de interface de uma aplicação real
 - [ ] Session 12: Executando projeto
