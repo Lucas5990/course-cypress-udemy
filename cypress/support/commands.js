@@ -51,12 +51,27 @@ Cypress.Commands.add('getToken', (user,password) => {
     method: 'POST',
     url: '/signin',
     body: {
-       email: user,
-       redirecionar : false,
-       senha: password,
-     }
+      email: user,
+      redirecionar : false,
+      senha: password,
+    }
   }).its('body.token').should('not.be.empty')
-  .then(token => token)
+  .then(token => {
+    Cypress.env('token', token)
+    return token
+  })
+})
+
+Cypress.Commands.overwrite('request', (originalFn, ...options) => {
+  if(options.length === 1) {
+    console.log(options)
+    if(Cypress.env('token')){
+      options[0].headers = {
+        Authorization: `JWT ${Cypress.env('token')}`
+      }
+    }
+  }
+  return originalFn(...options)
 })
 
 Cypress.Commands.add('resetRest', (token) => {
@@ -67,4 +82,19 @@ Cypress.Commands.add('resetRest', (token) => {
       Authorization: `JWT ${token}`
     }
   }).its('status').should('be.equal',200)
+})
+
+Cypress.Commands.add('getContaByName', name => {
+  cy.getToken("lucasteste@mail.com","1").then(token => {
+    cy.request({
+      method: 'GET',
+      url: '/contas',
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      qs: {
+          nome: name
+        }
+    }).then( res => res.body[0].id)
+  })
 })

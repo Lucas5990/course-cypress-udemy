@@ -4,7 +4,7 @@
   "description": "Repositório do curso \"Testes de aplicações modernas com Cypress\" ministrado na Udemy pelo professor Francisco Wagner Aquino..",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "session10": "npx cypress run --spec cypress/integration/session10/*"
   },
   "repository": {
     "type": "git",
