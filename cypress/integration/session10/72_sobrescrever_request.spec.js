@@ -18,7 +18,7 @@ describe('Should test back-end API', () => {
     cy.request({
       method: 'POST',
       url: '/contas',
-      headers: {
+      headers: { 
         Authorization: `JWT ${token}`
       },
       body: {
