@@ -1,55 +1,70 @@
 /// <reference types="cypress" />
-
 /**
-  Testes de Front-end
- */
+*/
 
 import {LOGIN, MENU, CONTAS, MESSAGE, MOVIMENTACAO, EXTRATO, SALDO} from '../../support/locators'
 import '../../support/commandsContas'
-
+import '../../support/buildEnv'
+import buildEnv from '../../support/buildEnv'
+  
 describe('Should test Front-end only', () => {
-  before(() => {
-    cy.server()
-    cy.route({
-      method: 'POST',
-      url: '/signin',
-      response: {
-        id:21255,
-        nome:"lucas",
-        token:"Uma string muito grande que não deveria ser aceita mas na verdade vai" 
-      }
-    })
-    cy.route({
-      method: 'GET',
-      url: '/saldo',
-      response: [
-        {
-          conta_id:999,
-          conta:"Carteira",
-          saldo:"100.00"
-        },
-        {
-          conta_id:99909,
-          conta:"Carteira falsa",
-          saldo:"1000000.00"
-        }
-      ]
-    }).as('saldo')
+  beforeEach(() => {
+    buildEnv()
     cy.login('lucasteste@mail.com','1')
   })
   after(() => {
-    cy.resetApp()
+    // cy.resetApp()
   })
   
   it('Should create an account', () => {
+    cy.intercept('POST','/contas', {
+        body: {
+            id: 3,
+            nome: 'Conta de teste',
+            visivel: true,
+            usuario_id: 1
+        }
+    })
     cy.acessarMenuConta()
+    cy.intercept('GET', '/contas', {
+        body: [
+            {
+                id: 1,
+                nome: "Carteira",
+                visivel: true,
+                usuario_id: 1,
+            },
+            {
+                id: 2,
+                nome: 'Banco',
+                visivel: true,
+                usuario_id: 1
+            },
+            {
+                id: 3,
+                nome: 'coco',
+                visivel: true,
+                usuario_id: 1
+            }
+        ]
+    }).as('saveConta')
     cy.inserirConta('Conta de teste')
     cy.get(MESSAGE).should('contain', 'Conta inserida com sucesso')
   })
   
   it('Should update an account', () => {
-    cy.get(MENU.SETTINGS).click()
-    cy.get(MENU.CONTAS).click()
+    cy.server()
+    cy.route({
+      method: 'PUT',
+      url: '/contas/**',
+      response: {
+        id: 1,
+        nome: 'Conta alterada',
+        visivel: true
+      }
+    })
+
+    cy.acessarMenuConta()
     cy.xpath(CONTAS.FN_XP_BTN_ALTERAR('Conta para alterar')).click()
     cy.get(CONTAS.NOME)
     .clear()  
@@ -59,6 +74,14 @@ describe('Should test Front-end only', () => {
   })
   
   it.only('Should not create an account with same name', () => {
+    cy.intercept('POST', '/contas', {
+      body: [
+          {
+            error: 'Já existe uma conta com esse nome!',
+          },
+      ],
+      statusCode: 400
+    }).as('saveContaMesmoNome')
     cy.acessarMenuConta()
     cy.inserirConta('Conta mesmo nome')
     cy.get(MESSAGE).should('contain', '400')
@@ -89,3 +112,4 @@ describe('Should test Front-end only', () => {
   })
   
 })
+

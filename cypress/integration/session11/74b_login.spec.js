@@ -1,7 +1,4 @@
 /// <reference types="cypress" />
-
-/// <reference types="cypress" />
-
 /**
   Mesma coisa da aula 74, mas usando cy.intercept
  */
