@@ -18,6 +18,12 @@
 - [X] Session 8: Outras funcionalidades do Cypress
 - [X] Session 9: Testes funcionais de uma aplicação real
 - [X] Session 10: Testes da API de uma aplicação real
-- [ ] Session 11: Testes de interface de uma aplicação real
-- [ ] Session 12: Executando projeto
-- [ ] Session 13: Encerramento
+- [X] Session 11: Testes de interface de uma aplicação real
+- [X] Session 12: Executando projeto
+- [X] Session 13: Encerramento
+
+---
+
+## 🏆 Certificate
+
+![certificado](https://lh3.googleusercontent.com/pw/ACtC-3fgU-fx4FkCn5z25iaNrCDLCVFh9ekjnH6TtapPvIEzgblv1bMyOTgkow7JTwQs5g-lSi2udCQkxOdH9hqowTgA4XtycRUO1AwZ0I2zO7f7TIDKqjz809VNmF5sZfjndTjCp4nigqKzY2PIZ6f24fc=w1214-h903-no?authuser=0)
